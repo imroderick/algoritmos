@@ -237,28 +237,41 @@ bool estaContenida(lista head1, lista head2){
     return control==1;
 };
 
-// lista borrarK(lista head, item k){
-//     nodo *aux, *eliminado;
-//     aux=head;
-    
-//     if (aux)//SI LA LISTA ESTA VACIA DIRECTAMENTE RETORNA HEAD
-//     {
-//         if (aux->siguiente)//SI LA LISTA TIENE MAS DE UN ELEMENTO
-//         {
-//             while (aux->siguiente)
-//             {
-//                 if (aux->siguiente->dato==k)
-//                 {
-//                     eliminado=aux->siguiente;
-//                     aux->siguiente=aux->siguiente->siguiente;
-//                     free(eliminado);
-//                 }else{
-//                     aux=aux->siguiente;
-//                 }
-//             }
-//         }else{
-//             aux=aux->siguiente;
-//         }
-//     }
-//     return head;
-// }
+lista borrarK(lista head, item k){
+    nodo *aux, *eliminado;
+    aux=head;
+
+    if (aux)//ACA ENTRA SI LA LISTA NO ESTA VACIA
+    {
+        if (aux->siguiente)//ACA ENTRA SI LA LISTA TIENE MAS DE UN ELEMENTO
+        {
+            while (aux->siguiente)//MIENTRAS LA LISTA TENGA MAS DE UN ELEMENTO
+            {
+                if (aux->dato==k)//SI EL PRIMER ELEMENTO ES EL DATO A BORRAR
+                {
+                    eliminado=aux;
+                    head=head->siguiente;
+                    aux=aux->siguiente;
+                    free(eliminado);
+                }else if (aux->siguiente->dato==k)//SI EL SEGUNDO ELEMENTO ES EL DATO A BORRAR
+                {
+                    eliminado=aux->siguiente;
+                    aux->siguiente=aux->siguiente->siguiente;
+                    free(eliminado);
+                }else{
+                    aux=aux->siguiente;
+                }
+            }
+        }else{ //ACA ENTRA SI LA LISTA TIENE UN SOLO ELEMENTO
+            if (aux->dato==k)
+            {
+                eliminado=aux;
+                head=head->siguiente;
+                free(eliminado);
+                return head;
+            }
+        }
+    }else{
+        return head;
+    }
+}
