@@ -17,7 +17,6 @@ typedef struct pila{
     int altura;
 }tipopila;
 
-
 //OPERACIONES DEL ADT PILA
 void pilaVacia(tipopila *);
 bool esPilaVacia(tipopila);
@@ -98,7 +97,6 @@ void main(){
     }else{
         printf("Pila NO creciente\n");
     }
-
     fflush(stdin);
     getchar();
 }
