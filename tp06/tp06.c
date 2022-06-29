@@ -39,6 +39,7 @@ void main(){
     inqueue(&filaNueva2,4);
     filaVacia(&filaOrdenada);
     mezclar(&filaNueva,&filaNueva2,&filaOrdenada);
+    printf("El resultado del producto de los pares es: %d", productosPares(&filaOrdenada));
     getchar();
 }
 
@@ -125,16 +126,19 @@ void mezclar(tipofila *fila1,tipofila *fila2,tipofila *filaMezclada){
 }
 
 int productosPares(tipofila *fila){
-    int paridad;
+    int paridad, auxiliar;
     paridad=frente(*fila)%2;
     if (esFilaVacia(*fila))
     {
         return 1;
     }else{
-        if (paridad==2)
+        auxiliar=frente(*fila);
+        dequeue(fila);
+        if (paridad==0)
         {
-            dequeue(fila);
-            return frente(*fila)*productosPares(fila);
+            return auxiliar*productosPares(fila);
+        }else{
+            return 1*productosPares(fila);
         }
     }
 }
