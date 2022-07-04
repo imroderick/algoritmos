@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <unistd.h>
 #include <stdbool.h>
 #include <stdlib.h>
 
@@ -140,7 +139,7 @@ void mostrarLista(lista head){
         printf("%d -> ", head->dato);//%d porque item es tipo int
         head=head->siguiente;
     }
-    printf("NULL\n");3985+28
+    printf("NULL\n");
 }
 
 lista borrar(lista head){
@@ -183,43 +182,43 @@ item primerElemento(lista head){
     }
 }
 
-lista borrarK(lista head, item k){
-    nodo *aux, *eliminado;
-    aux=head;
+// lista borrarK(lista head, item k){
+//     nodo *aux, *eliminado;
+//     aux=head;
 
-    if (aux)//ACA ENTRA SI LA LISTA NO ESTA VACIA
-    {
-        if (aux->siguiente)//ACA ENTRA SI LA LISTA TIENE MAS DE UN ELEMENTO
-        {
-            while (aux->siguiente)//MIENTRAS LA LISTA TENGA MAS DE UN ELEMENTO
-            {
-                if (aux->dato==k)//SI EL PRIMER ELEMENTO ES EL DATO A BORRAR
-                {
-                    eliminado=aux;
-                    head=head->siguiente;
-                    aux=aux->siguiente;
-                    free(eliminado);
-                }else if (aux->siguiente->dato==k)//SI EL SEGUNDO ELEMENTO ES EL DATO A BORRAR
-                {
-                    eliminado=aux->siguiente;
-                    aux->siguiente=aux->siguiente->siguiente;
-                    free(eliminado);
-                }else{
-                    aux=aux->siguiente;
-                }
-            }
-        }else{ //ACA ENTRA SI LA LISTA TIENE UN SOLO ELEMENTO
-            if (aux->dato==k)
-            {
-                eliminado=aux;
-                head=head->siguiente;
-                return head;
-            }
-        }
-    }else{
-        return head;
-    }
-}
+//     if (aux)//ACA ENTRA SI LA LISTA NO ESTA VACIA
+//     {
+//         if (aux->siguiente)//ACA ENTRA SI LA LISTA TIENE MAS DE UN ELEMENTO
+//         {
+//             while (aux->siguiente)//MIENTRAS LA LISTA TENGA MAS DE UN ELEMENTO
+//             {
+//                 if (aux->dato==k)//SI EL PRIMER ELEMENTO ES EL DATO A BORRAR
+//                 {
+//                     eliminado=aux;
+//                     head=head->siguiente;
+//                     aux=aux->siguiente;
+//                     free(eliminado);
+//                 }else if (aux->siguiente->dato==k)//SI EL SEGUNDO ELEMENTO ES EL DATO A BORRAR
+//                 {
+//                     eliminado=aux->siguiente;
+//                     aux->siguiente=aux->siguiente->siguiente;
+//                     free(eliminado);
+//                 }else{
+//                     aux=aux->siguiente;
+//                 }
+//             }
+//         }else{ //ACA ENTRA SI LA LISTA TIENE UN SOLO ELEMENTO
+//             if (aux->dato==k)
+//             {
+//                 eliminado=aux;
+//                 head=head->siguiente;
+//                 return head;
+//             }
+//         }
+//     }else{
+//         return head;
+//     }
+// }
 
 bool estaContenida(lista head1, lista head2){
     int control=0;

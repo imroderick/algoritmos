@@ -26,7 +26,7 @@ void LCrotar(LC *);
 int LCcontarK(LC*,item,int);
 
 void main(){
-
+    
 }
 
 void LCvacia(LC *lista){
@@ -81,7 +81,10 @@ void LCborrar (LC *lista){
 }
 
 void LCrotar (LC *lista){
-    lista->head=lista->head->siguiente;
+    if (!esLCVacia(*lista))
+    {
+        lista->head=lista->head->siguiente;
+    }
 }
 
 int LCcontarK(LC *lista, item K, int longitud){
@@ -93,6 +96,8 @@ int LCcontarK(LC *lista, item K, int longitud){
         {
             LCrotar(lista);
             return 1 + LCcontarK(lista,K,longitud-1);
+        }else{
+            return LCcontarK(lista,K,longitud-1);
         }
     }
 }

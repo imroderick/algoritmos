@@ -1,30 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <string.h>
 
 typedef int item; //tipo de dato que contiene la pila
-
 #define indefinido -9999;
-
 typedef struct nodo{
     item dato;
     struct nodo *siguiente;
 }nodo;
-
 typedef struct fila{
     nodo *frente;
     nodo *final;
     int longitud;
 }tipofila;
-
 //OPERACIONES DEL ADT FILA
 void filaVacia(tipofila *);
 bool esFilaVacia(tipofila);
 void inqueue(tipofila *,item);
 void dequeue(tipofila *);
 item frente(tipofila);
-
+bool pertenece(tipofila,item);
 //FUNCIONES COMO USUARIO
 void mezclar(tipofila *, tipofila *, tipofila *);
 int productosPares(tipofila *);
@@ -39,6 +34,7 @@ void main(){
     inqueue(&filaNueva2,4);
     filaVacia(&filaOrdenada);
     mezclar(&filaNueva,&filaNueva2,&filaOrdenada);
+    pertenece(filaOrdenada,5);
     printf("El resultado del producto de los pares es: %d", productosPares(&filaOrdenada));
     getchar();
 }
@@ -140,5 +136,18 @@ int productosPares(tipofila *fila){
         }else{
             return 1*productosPares(fila);
         }
+    }
+}
+
+bool pertenece(tipofila fila, item x){
+    tipofila punteroAux;
+    item aux;
+    if (fila.frente == NULL)
+    {
+        return false;
+    }else{
+        aux=fila.frente->dato;
+        fila.frente=fila.frente->siguiente;
+        return aux==x || pertenece(fila,x);
     }
 }
